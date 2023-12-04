@@ -35,6 +35,27 @@ public class GameManager : MonoBehaviour
     public int Score => score;
     public int Lives => lives;
 
+    public Timer timer;
+    public Ball ball;
+
+    private void Start()
+    {
+        timer.StartTimer();
+    }
+
+    public void ActivateItemEffect(Item.ItemType itemType)
+    {
+        switch (itemType)
+        {
+            case Item.ItemType.SpeedBoost:
+                ball.IncreaseSpeed();
+                break;
+            case Item.ItemType.TimeExtend:
+                timer.AddTime(30f);
+                break;
+        }
+    }
+
     private void Awake()
     {
         if (m_Instance != null)
